@@ -1,0 +1,15 @@
+---
+- name: Install nginx
+  hosts: all
+  become: true
+
+  tasks:
+  - name: Ensure NTP is installed
+    yum:
+      name: ntp
+      state: present
+  - name: Ensure NTP is running all the time
+    service:
+      name: ntpd
+      state: started
+      enabled: yes
