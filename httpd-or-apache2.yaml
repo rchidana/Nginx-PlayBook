@@ -1,0 +1,15 @@
+- hosts: all
+  become: yes
+  become_user: root
+  become_method: sudo
+  tasks:
+    - name: install apache (apt)
+      when: ansible_distribution == "Debian"
+      package:
+        name: apache2
+        state: latest
+    - name: install apache (yum)
+      when: ansible_distribution == "CentOS"
+      package:
+        name: httpd
+        state: latest
